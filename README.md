@@ -112,7 +112,7 @@ From the generated results:
 ## Project Structure
 
 ```text
-project/
+Analyse_Numerique_TP/
 │
 ├── jacobi.py
 ├── gauss_seidel.py
