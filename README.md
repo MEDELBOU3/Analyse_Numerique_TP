@@ -16,34 +16,29 @@ The implementation is written in **Python** using:
 
 The system of equations used in this project is:
 
-[
-A=
-\begin{bmatrix}
-4 & 1 & 0\
-1 & 4 & 1\
-0 & 1 & 4
-\end{bmatrix}
-]
+Matrix **A**
 
-[
-b=
-\begin{bmatrix}
-5\
-6\
-5
-\end{bmatrix}
-]
+```text
+| 4  1  0 |
+| 1  4  1 |
+| 0  1  4 |
+```
 
-Initial approximation:
+Vector **b**
 
-[
-x_0=
-\begin{bmatrix}
-0\
-0\
-0
-\end{bmatrix}
-]
+```text
+| 5 |
+| 6 |
+| 5 |
+```
+
+Initial approximation **x₀**
+
+```text
+| 0 |
+| 0 |
+| 0 |
+```
 
 ---
 
@@ -53,47 +48,35 @@ x_0=
 
 The Jacobi method updates each variable using values from the previous iteration:
 
-[
-x_i^{(k+1)}
-===========
+```text
+x_i(k+1) = [ b_i - Σ(a_ij * x_j(k)) ] / a_ii
+            for j ≠ i
+```
 
-\frac{
-b_i
----
+where:
 
-\sum_{j\neq i}
-a_{ij}x_j^{(k)}
-}{
-a_{ii}
-}
-]
+* `x_i(k+1)` → new value at iteration `k+1`
+* `x_j(k)` → value from previous iteration
+* `a_ij` → matrix coefficients
 
 ---
 
 ### Gauss–Seidel Method
 
-The Gauss–Seidel method improves convergence by immediately using newly computed values:
+The Gauss–Seidel method improves convergence by immediately reusing newly computed values:
 
-[
-x_i^{(k+1)}
-===========
+```text
+x_i(k+1) = [ b_i
+             - Σ(a_ij * x_j(k+1))
+             - Σ(a_ij * x_j(k))
+           ] / a_ii
 
-\frac{
-b_i
----
+for j < i   (new values)
+for j > i   (old values)
+```
 
-\sum_{j<i}
-a_{ij}x_j^{(k+1)}
------------------
+Unlike Jacobi, Gauss–Seidel uses the newest available values during the same iteration, which generally leads to faster convergence.
 
-\sum_{j>i}
-a_{ij}x_j^{(k)}
-}{
-a_{ii}
-}
-]
-
----
 
 ## Convergence Comparison
 
