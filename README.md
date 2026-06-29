@@ -164,4 +164,4 @@ pip install numpy matplotlib
 
 ## Author
 
-Numerical Analysis Project using Python.
+MOHAMED EL-BOUANANI.
